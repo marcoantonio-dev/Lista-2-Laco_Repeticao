@@ -1,0 +1,44 @@
+1.  Pesquisa sobre Idade e Altura: 
+   A prefeitura de uma cidade fez uma pesquisa entre seus habitantes, coletando dados sobre a idade e altura. A prefeitura deseja saber:
+   a) média da idade da população;
+   b) média da altura da população;
+   c) maior idade registrada;
+   d) percentual de pessoas com altura acima de 1,80 metros.
+   O final da leitura de dados se dará com a entrada de uma idade negativa.
+
+2.  Pesquisa sobre Cor da Pele e Grau de Escolaridade: 
+   A prefeitura de uma cidade fez uma pesquisa entre seus habitantes, coletando dados sobre a cor da pele e grau de escolaridade. A prefeitura deseja saber:
+   a) distribuição da população por cor da pele;
+   b) percentual de pessoas com ensino superior completo;
+   c) percentual de pessoas com ensino médio incompleto.
+   A pesquisa termina quando for inserido o valor -1 para cor da pele.
+
+3.  Pesquisa sobre Sexo e Estado Civil: 
+   A prefeitura de uma cidade fez uma pesquisa entre seus habitantes, coletando dados sobre o sexo e estado civil. A prefeitura deseja saber:
+   a) distribuição da população por sexo;
+   b) percentual de pessoas solteiras;
+   c) quantidade de pessoas casadas;
+   d) percentual de pessoas divorciadas.
+   A pesquisa termina quando for inserido o valor "X" para o sexo.
+
+4.  Pesquisa sobre Profissão e Renda: 
+   A prefeitura de uma cidade fez uma pesquisa entre seus habitantes, coletando dados sobre a profissão e renda mensal. A prefeitura deseja saber:
+   a) média da renda mensal da população;
+   b) profissão com maior média de renda;
+   c) percentual de pessoas desempregadas;
+   d) percentual de pessoas com renda acima de R$ 5000,00.
+   A pesquisa termina quando for inserido o valor "x" para a renda.
+
+5.  Pesquisa sobre Nível de Satisfação e Tempo de Residência: 
+   A prefeitura de uma cidade fez uma pesquisa entre seus habitantes, coletando dados sobre o nível de satisfação com a cidade e tempo de residência. A prefeitura deseja saber:
+   a) média do nível de satisfação da população;
+   b) tempo de residência médio na cidade;
+   c) percentual de pessoas insatisfeitas;
+   d) percentual de pessoas que residem na cidade há mais de 10 anos.
+   A pesquisa termina quando for inserido o valor -1 para o nível de satisfação.
+
+6. Escreva um programa em C para calcular a soma dos números pares de 1 a 100.
+7. Faça um programa em C para exibir os números ímpares de 1 a 50.
+8. Escreva um programa em C para verificar se um ano fornecido pelo usuário é bissexto ou não.
+9. Faça um programa em C para calcular a potência de um número.
+10. Escreva um programa em C para imprimir uma pirâmide de números.
