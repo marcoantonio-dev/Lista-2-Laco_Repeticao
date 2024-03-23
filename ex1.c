@@ -10,59 +10,70 @@
    O final da leitura de dados se dará com a entrada de uma idade negativa.
 
 */
-int main()
-{
 
-    short idade = 0;
-    float altura = 0.0;
-    short mediaDaIdade = 0;
-    short somaDaIdade = 0;
-    float mediaDaAltura = 0;
-    float somaDaAltura =0;
-    short maiorIdadeRegistrada = 0;
-    float alturaMaior180 = 0.0;
-    short numeroDePessoas = 0;
-    float maiorAltura = 0;
+float calcularMediaIdade(int totalIdades, int numPessoas) {
+    return (float) totalIdades / numPessoas;
+}
 
-    while (idade > -1) {
+float calcularMediaAltura(float totalAlturas, int numPessoas) {
+    return totalAlturas / numPessoas;
+}
 
-        printf("Digite seu idade: ");
-        scanf("%hd", &idade);
+int encontrarMaiorIdade(int maiorIdade, int idade) {
+    if (idade > maiorIdade) {
+        return idade;
+    } else {
+        return maiorIdade;
+    }
+}
+
+float calcularPercentualAltura(int numPessoasAltura, int numPessoas) {
+    return ((float) numPessoasAltura / numPessoas) * 100.0;
+}
+
+int main() {
+    int idade;
+    int totalIdades = 0;
+    int numPessoas = 0;
+    int maiorIdade = 0;
+    int numPessoasAltura = 0;
+
+    float altura;
+    float totalAlturas = 0.0;
+    float percentualAlturaAlta = 0.0;
+
+    printf("Digite a idade e a altura dos habitantes (digite uma idade negativa para encerrar):\n");
+    while (1) {
+        printf("Idade: ");
+        scanf("%d", &idade);
 
         if (idade < 0) {
             break;
         }
 
-        printf("Digite sua altura: ");
+        printf("Altura: ");
         scanf("%f", &altura);
 
+        totalIdades += idade;
+        totalAlturas += altura;
+        numPessoas++;
+
+        maiorIdade = encontrarMaiorIdade(maiorIdade, idade);
+
         if (altura > 1.80) {
-            alturaMaior180++;
+            numPessoasAltura++;
         }
-
-        if(maiorAltura < altura) {
-            maiorAltura = altura;
-        }
-
-        if (maiorIdadeRegistrada < idade)
-        {
-            maiorIdadeRegistrada  = idade;
-        }
-        
-
-        somaDaIdade += idade;
-        somaDaAltura += altura;
-        numeroDePessoas++;
     }
 
-     mediaDaIdade = somaDaIdade / numeroDePessoas;
-     mediaDaAltura = somaDaAltura / numeroDePessoas;
-     alturaMaior180 = alturaMaior180 / numeroDePessoas * 100.0;
+    float mediaIdade = calcularMediaIdade(totalIdades, numPessoas);
+    float mediaAltura = calcularMediaAltura(totalAlturas, numPessoas);
+    percentualAlturaAlta = calcularPercentualAltura(numPessoasAltura, numPessoas);
 
-    printf("A Media da idade da populacao e de: %hd anos \n", mediaDaIdade);
-    printf("A Media da altura da populacao e de: %f centimetros \n", mediaDaAltura);
-    printf("A maior altura de todas as pessoas e: %f\n", maiorAltura);
-    printf("A maior idade registrada e: %hd anos \n", maiorIdadeRegistrada);
-    printf("O percentual de pessoas com altura maior que 180 e de %f por cento: \n", alturaMaior180);
-    
+    printf("\nResultados da pesquisa:\n");
+    printf("a) Media da idade da populacao: %.2f anos\n", mediaIdade);
+    printf("b) Media da altura da populacao: %.2f metros\n", mediaAltura);
+    printf("c) Maior idade registrada: %d anos\n", maiorIdade);
+    printf("d) Percentual de pessoas com altura acima de 1,80 metros: %.2f%%\n", percentualAlturaAlta);
+
+    return 0;
 }
