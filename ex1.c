@@ -58,7 +58,9 @@ int main() {
         totalAlturas += altura;
         numPessoas++;
 
-        maiorIdade = encontrarMaiorIdade(maiorIdade, idade);
+        if (idade > maiorIdade) {
+            maiorIdade = idade;
+        }
 
         if (altura > 1.80) {
             numPessoasAltura++;

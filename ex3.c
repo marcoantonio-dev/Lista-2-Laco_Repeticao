@@ -9,72 +9,76 @@
    A pesquisa termina quando for inserido o valor "X" para o sexo.
 */
 
-void lerDados(char *sexo, char *estadoCivil) {
-    printf("Digite o sexo (X para encerrar):\n");
-    printf("M - Masculino\n");
-    printf("F - Feminino\n");
-    scanf(" %c", sexo);
+void lerDados(char sexo, char estadoCivil) {
+    printf("Digite o sexo (M/F, X para encerrar): ");
+    scanf(" %c", &sexo);
 
-    if (*sexo != 'X') {
-        printf("Digite o estado civil:\n");
-        printf("S - Solteiro\n");
-        printf("C - Casado\n");
-        printf("D - Divorciado\n");
-        scanf(" %c", estadoCivil);
+    if (sexo != 'X' && sexo != 'x') {
+        printf("Digite o estado civil (S para solteiro, C para casado, D para divorciado): ");
+        scanf(" %c", &estadoCivil);
     }
 }
 
-void calcularDistribuicaoSexo(char sexo, int *numPessoasMasculino, int *numPessoasFeminino) {
-    if (sexo == 'M') {
-        (*numPessoasMasculino)++;
-    } else if (sexo == 'F') {
-        (*numPessoasFeminino)++;
+void calcularDistribuicaoSexo(char sexo, int *numPessoasPorSexo) {
+    if (sexo == 'M' || sexo == 'm') {
+        numPessoasPorSexo[0]++;
+    } else if (sexo == 'F' || sexo == 'f') {
+        numPessoasPorSexo[1]++;
     }
 }
 
-float calcularPercentualSolteiros(int numPessoasSolteiras, int numPessoas) {
-    return ((float) numPessoasSolteiras / numPessoas) * 100.0;
+float calcularPercentualSolteiros(int numSolteiros, int numPessoas) {
+    return ((float) numSolteiros / numPessoas) * 100.0;
+}
+
+int calcularQuantidadeCasados(int numCasados) {
+    return numCasados;
+}
+
+float calcularPercentualDivorciados(int numDivorciados, int numPessoas) {
+    return ((float) numDivorciados / numPessoas) * 100.0;
 }
 
 int main() {
     char sexo;
     char estadoCivil;
-    int numPessoasMasculino = 0;
-    int numPessoasFeminino = 0;
+    int numPessoasPorSexo[2] = {0}; // Índices -> Secho: 0 - Masculino, 1 - Feminino
     int numPessoas = 0;
-    int numPessoasSolteiras = 0;
-    int numPessoasCasadas = 0;
-    int numPessoasDivorciadas = 0;
+    int numSolteiros = 0;
+    int numCasados = 0;
+    int numDivorciados = 0;
 
     printf("Digite os dados da pesquisa:\n");
     while (1) {
-        lerDados(&sexo, &estadoCivil);
+        lerDados(sexo, estadoCivil);
 
-        if (sexo == 'X') {
+        if (sexo == 'X' || sexo == 'x') {
             break;
         }
 
         numPessoas++;
-        calcularDistribuicaoSexo(sexo, &numPessoasMasculino, &numPessoasFeminino);
+        calcularDistribuicaoSexo(sexo, numPessoasPorSexo);
 
-        if (estadoCivil == 'S') {
-            numPessoasSolteiras++;
-        } else if (estadoCivil == 'C') {
-            numPessoasCasadas++;
-        } else if (estadoCivil == 'D') {
-            numPessoasDivorciadas++;
+        if (estadoCivil == 'S' || estadoCivil == 's') {
+            numSolteiros++;
+        } else if (estadoCivil == 'C' || estadoCivil == 'c') {
+            numCasados++;
+        } else if (estadoCivil == 'D' || estadoCivil == 'd') {
+            numDivorciados++;
         }
     }
 
-    float percentualSolteiros = calcularPercentualSolteiros(numPessoasSolteiras, numPessoas);
+    float percentualSolteiros = calcularPercentualSolteiros(numSolteiros, numPessoas);
+    int quantidadeCasados = calcularQuantidadeCasados(numCasados);
+    float percentualDivorciados = calcularPercentualDivorciados(numDivorciados, numPessoas);
 
     printf("\nResultados da pesquisa:\n");
     printf("a) Distribuicao da populacao por sexo:\n");
-    printf("   - Masculino: %d pessoas\n", numPessoasMasculino);
-    printf("   - Feminino: %d pessoas\n", numPessoasFeminino);
+    printf("   - Masculino: %d pessoas\n", numPessoasPorSexo[0]);
+    printf("   - Feminino: %d pessoas\n", numPessoasPorSexo[1]);
     printf("b) Percentual de pessoas solteiras: %.2f%%\n", percentualSolteiros);
-    printf("c) Quantidade de pessoas casadas: %d pessoas\n", numPessoasCasadas);
-    printf("d) Percentual de pessoas divorciadas: %.2f%%\n", ((float) numPessoasDivorciadas / numPessoas) * 100.0);
+    printf("c) Quantidade de pessoas casadas: %d\n", quantidadeCasados);
+    printf("d) Percentual de pessoas divorciadas: %.2f%%\n", percentualDivorciados);
 
     return 0;
 }

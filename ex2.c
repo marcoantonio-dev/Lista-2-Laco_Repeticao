@@ -9,23 +9,23 @@
    A pesquisa termina quando for inserido o valor -1 para cor da pele.
 */
 
-void lerDados(int *corPele, int *grauEscolaridade) {
+void lerDados(int corPele[], int grauEscolaridade[]) {
     printf("Digite a cor da pele (-1 para encerrar):\n");
     printf("0 - Branca\n");
     printf("1 - Preta\n");
     printf("2 - Parda\n");
     printf("3 - Outra\n");
-    scanf("%d", corPele);
+    scanf("%d", &corPele);
 
-    if (*corPele != -1) {
+    if (corPele != -1) {
         printf("Digite o numero correspondente ao grau de escolaridade:\n");
         printf("1 - Ensino Medio Incompleto\n");
         printf("2 - Ensino Superior Completo\n");
-        scanf("%d", grauEscolaridade);
+        scanf("%d", &grauEscolaridade);
     }
 }
 
-void calcularDistribuicaoCorPele(int corPele, int *numPessoasPorCor) {
+void calcularDistribuicaoCorPele(int corPele, int numPessoasPorCor[]) {
     if (corPele >= 0 && corPele <= 3) {
         numPessoasPorCor[corPele]++;
     }
@@ -42,27 +42,27 @@ float calcularPercentualEnsinoMedioIncompleto(int numPessoasMedioIncompleto, int
 int main() {
     int corPele;
     int grauEscolaridade;
-    int numPessoasPorCor[4] = {0}; // Indices representam as cores: 0 - Branca, 1 - Preta, 2 - Parda, 3 - Outra
+    int numPessoasPorCor[4] = {0}; // Indice -> Cor ds Pele: 0 - Branca, 1 - Preta, 2 - Parda, 3 - Outra
     int numPessoas = 0;
     int numPessoasSuperior = 0;
     int numPessoasMedioIncompleto = 0;
 
     printf("Digite os dados da pesquisa:\n");
     while (1) {
-        lerDados(&corPele, &grauEscolaridade);
+        lerDados(corPele, grauEscolaridade);
 
         if (corPele == -1) {
             break;
         }
 
         numPessoas++;
-        calcularDistribuicaoCorPele(corPele, numPessoasPorCor);
-
         if (grauEscolaridade == 2) {
             numPessoasSuperior++;
         } else if (grauEscolaridade == 1) {
             numPessoasMedioIncompleto++;
         }
+
+        calcularDistribuicaoCorPele(corPele, numPessoasPorCor);
     }
 
     float percentualSuperior = calcularPercentualEnsinoSuperior(numPessoasSuperior, numPessoas);
